@@ -1,9 +1,3 @@
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="manifest" href="images/site.webmanifest">
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Danny Baylen</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Distressed&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="manifest" href="images/site.webmanifest">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Rubik+Distressed&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -19,9 +19,10 @@
 
 :root {
   --brand-red: #CF1827;
-  --bg-dark: #000;
-  --panel: rgba(255, 255, 255, 0.05);
+  --panel: rgba(255, 255, 255, 0.06);
 }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -30,6 +31,7 @@ body {
   color: white;
   text-align: center;
   font-weight: 600;
+  line-height: 1.55;
 }
 
 body > *:not(.rain) {
@@ -37,28 +39,39 @@ body > *:not(.rain) {
   z-index: 1;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 10px;
+  background: var(--brand-red);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 10px;
+  z-index: 10000;
+}
+
 .rain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.26;
   background-image:
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0)),
-    repeating-linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.15) 0,
-      rgba(255, 255, 255, 0.15) 2px,
-      transparent 2px,
-      transparent 18px
-    );
-  background-size: 100% 100%, 3px 26px;
-  animation: rainMove 0.45s linear infinite;
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.11) 0, rgba(255, 255, 255, 0.11) 2px, transparent 2px, transparent 20px);
+  background-size: 100% 100%, 3px 28px;
+  animation: rainMove 0.55s linear infinite;
 }
 
 @keyframes rainMove {
   from { background-position: 0 0, 0 0; }
-  to { background-position: 0 0, 0 26px; }
+  to { background-position: 0 0, 0 28px; }
 }
 
 #loader {
@@ -73,9 +86,9 @@ body > *:not(.rain) {
 
 #loader h1 {
   margin: 0;
-  font-family: 'Bangers', system-ui;
-  letter-spacing: 2px;
-  font-size: 42px;
+  font-family: 'Rubik Distressed', system-ui;
+  letter-spacing: 3px;
+  font-size: 44px;
   color: var(--brand-red);
 }
 
@@ -93,11 +106,9 @@ header::before {
   content: "";
   position: absolute;
   inset: -7%;
-  background: url("images/header.jpg") center 28%/cover no-repeat;
-  background-attachment: scroll;
+  background: url("images/header.JPG") center 28%/cover no-repeat;
   transform: scale(0.9);
-  transform-origin: center;
-  filter: brightness(1) saturate(1.04);
+  filter: brightness(1.08) saturate(1.04);
   z-index: 0;
 }
 
@@ -105,7 +116,7 @@ header::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.42);
   z-index: 1;
 }
 
@@ -118,10 +129,16 @@ header * {
   margin-top: 16px;
   font-family: 'Rubik Distressed', system-ui;
   letter-spacing: 3px;
-  font-size: clamp(2.5rem, 5vw, 4.1rem);
-  color: #CF1827;
+  font-size: clamp(2.7rem, 5vw, 4.4rem);
+  color: var(--brand-red);
   line-height: 1;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  animation: logoPulse 4s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
 }
 
 .social-top {
@@ -136,16 +153,21 @@ header * {
   color: var(--brand-red);
   font-size: 40px;
   transition: transform 0.25s ease, text-shadow 0.25s ease;
+  animation: iconFloat 3.6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 1) * 0.08s);
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
 }
 
 .social-top a:hover {
   text-shadow: 0 0 12px var(--brand-red), 0 0 25px var(--brand-red);
-  transform: scale(1.15);
+  transform: scale(1.12);
 }
 
-nav {
-  margin-top: 20px;
-}
+nav { margin-top: 20px; }
 
 nav a {
   color: white;
@@ -153,10 +175,15 @@ nav a {
   text-decoration: none;
   font-size: 15px;
   font-weight: 800;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
 }
 
-nav a:hover {
+nav a:hover,
+nav a:focus-visible {
   color: var(--brand-red);
+  border-bottom-color: var(--brand-red);
+  outline: none;
 }
 
 .hamburger {
@@ -166,14 +193,25 @@ nav a:hover {
   cursor: pointer;
 }
 
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 section {
   padding: 70px 20px;
 }
 
+section > h2 {
+  margin-top: 0;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
 .fade {
   opacity: 0;
-  transform: translateY(40px);
-  transition: 1s ease;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .fade.show {
@@ -181,58 +219,54 @@ section {
   transform: translateY(0);
 }
 
-h2 {
-  margin-top: 0;
-  font-size: 30px;
-  letter-spacing: 2px;
-}
-
 .releases,
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  max-width: 1100px;
   margin: 0 auto;
 }
 
 iframe {
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
+  background: #111;
 }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 15px;
-  max-width: 1000px;
   margin: 0 auto;
 }
 
 .gallery img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery img:hover {
-  transform: scale(1.04);
+  transform: scale(1.03);
   box-shadow: 0 0 15px var(--brand-red);
 }
 
 .fs-form {
-  max-width: 500px;
+  max-width: 560px;
   margin: 0 auto;
   text-align: left;
+  background: var(--panel);
+  border: 1px solid rgba(207, 24, 39, 0.35);
+  border-radius: 16px;
+  padding: 20px;
 }
 
-.fs-field {
-  margin-bottom: 14px;
-}
+.fs-field { margin-bottom: 14px; }
 
 .fs-label {
   display: block;
   margin-bottom: 6px;
+  font-size: 1.05rem;
 }
 
 .fs-input,
@@ -243,6 +277,16 @@ iframe {
   background: #101010;
   border: 1px solid #444;
   color: #fff;
+  font: inherit;
+}
+
+.fs-input:focus,
+.fs-textarea:focus,
+.fs-button:focus,
+.hamburger:focus,
+a:focus-visible {
+  outline: 3px solid var(--brand-red);
+  outline-offset: 2px;
 }
 
 .fs-textarea {
@@ -252,28 +296,30 @@ iframe {
 
 .fs-description {
   margin: 6px 0 0;
-  color: #bbb;
-  font-size: 0.9rem;
+  color: #d0d0d0;
+  font-size: 0.95rem;
 }
 
-.fs-button-group {
-  margin-top: 18px;
-}
+.fs-button-group { margin-top: 18px; }
 
 .fs-button {
   width: 100%;
-  padding: 12px 20px;
+  padding: 13px 20px;
   background: var(--brand-red);
   border: none;
   color: #fff;
   font-weight: 800;
   border-radius: 999px;
   cursor: pointer;
+  animation: ctaPulse 2.4s ease-in-out infinite;
 }
 
-.fs-button:hover {
-  box-shadow: 0 0 15px var(--brand-red);
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(207, 24, 39, 0.35); }
+  50% { box-shadow: 0 0 0 8px rgba(207, 24, 39, 0); }
 }
+
+.fs-button:hover { box-shadow: 0 0 15px var(--brand-red); }
 
 footer {
   border-top: 1px solid #333;
@@ -285,11 +331,25 @@ footer {
   nav.active { display: block; }
   nav a { display: block; margin: 10px 0; }
   .hamburger { display: block; }
+  .social-top a { font-size: 34px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .fade {
+    opacity: 1;
+    transform: none;
+  }
 }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="rain" aria-hidden="true"></div>
 
 <div id="loader">
@@ -298,16 +358,16 @@ footer {
 
 <header>
   <div class="social-top">
-    <a href="https://www.tiktok.com/@yesdanny" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.youtube.com/c/DannyBaylen" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.instagram.com/dannybaylen/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://open.spotify.com/artist/1sEDsEf0zV8EWIl5ZwirGS" target="_blank" rel="noopener" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
-    <a href="https://music.apple.com/ca/artist/danny-baylen/1745303435" target="_blank" rel="noopener" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
-    <a href="https://music.amazon.ca/artists/B0D3M56MRK/danny-baylen" target="_blank" rel="noopener" aria-label="Amazon Music"><i class="fab fa-amazon"></i></a>
-    <a href="https://www.facebook.com/search/top?q=dannybaylen" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a style="--i:1" href="https://www.tiktok.com/@yesdanny" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a style="--i:2" href="https://www.youtube.com/c/DannyBaylen" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a style="--i:3" href="https://www.instagram.com/dannybaylen/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a style="--i:4" href="https://open.spotify.com/artist/1sEDsEf0zV8EWIl5ZwirGS" target="_blank" rel="noopener" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+    <a style="--i:5" href="https://music.apple.com/ca/artist/danny-baylen/1745303435" target="_blank" rel="noopener" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+    <a style="--i:6" href="https://music.amazon.ca/artists/B0D3M56MRK/danny-baylen" target="_blank" rel="noopener" aria-label="Amazon Music"><i class="fab fa-amazon"></i></a>
+    <a style="--i:7" href="https://www.facebook.com/search/top?q=dannybaylen" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
   </div>
 
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" role="button" tabindex="0">☰</div>
 
   <div class="logo">DANNY BAYLEN</div>
 
@@ -319,59 +379,60 @@ footer {
   </nav>
 </header>
 
-<section id="releases" class="fade">
-  <h2>RECENT RELEASES</h2>
-  <div class="releases">
-    <iframe src="https://open.spotify.com/embed/album/4vYp0KvPQHBsz7OBSjI1qw?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <iframe src="https://open.spotify.com/embed/album/6aAF3r7pp1AUCxfkaabZrY?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-  </div>
-</section>
-
-<section class="fade">
-  <h2>ALL MUSIC</h2>
-  <iframe src="https://open.spotify.com/embed/artist/1sEDsEf0zV8EWIl5ZwirGS?theme=0" width="90%" height="380" allow="encrypted-media"></iframe>
-</section>
-
-<section id="videos" class="fade">
-  <h2>VIDEOS</h2>
-  <div class="video-grid">
-    <iframe src="https://www.youtube.com/embed/4GQ9soRIelU" width="100%" height="315" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/VV155sd5uA8" width="100%" height="315" allowfullscreen></iframe>
-  </div>
-</section>
-
-<section id="gallery" class="fade">
-  <h2>PHOTOS</h2>
-  <div class="gallery">
-    <img src="images/photo1.jpg" alt="Danny Baylen photo 1">
-    <img src="images/photo2.jpg" alt="Danny Baylen photo 2">
-    <img src="images/photo3.jpg" alt="Danny Baylen photo 2">
-  </div>
-</section>
-
-<section id="contact" class="fade">
-  <h2>CONTACT</h2>
-
-  <form action="https://formspree.io/f/mojnvovb" class="fs-form" target="_top" method="POST">
-    <div class="fs-field">
-      <label class="fs-label" for="name">Your Name</label>
-      <input class="fs-input" id="name" name="name" required>
+<main id="main-content">
+  <section id="releases" class="fade">
+    <h2>RECENT RELEASES</h2>
+    <div class="releases">
+      <iframe src="https://open.spotify.com/embed/album/4vYp0KvPQHBsz7OBSjI1qw?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <iframe src="https://open.spotify.com/embed/album/6aAF3r7pp1AUCxfkaabZrY?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
-    <div class="fs-field">
-      <label class="fs-label" for="email">Email</label>
-      <input class="fs-input" id="email" name="email" type="email" required>
-      <p class="fs-description">This helps me respond to your query by email.</p>
+  </section>
+
+  <section class="fade">
+    <h2>ALL MUSIC</h2>
+    <iframe src="https://open.spotify.com/embed/artist/1sEDsEf0zV8EWIl5ZwirGS?theme=0" width="90%" height="380" allow="encrypted-media"></iframe>
+  </section>
+
+  <section id="videos" class="fade">
+    <h2>VIDEOS</h2>
+    <div class="video-grid">
+      <iframe src="https://www.youtube.com/embed/4GQ9soRIelU" width="100%" height="315" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/VV155sd5uA8" width="100%" height="315" allowfullscreen></iframe>
     </div>
-    <div class="fs-field">
-      <label class="fs-label" for="message">Message</label>
-      <textarea class="fs-textarea" id="message" name="message" required></textarea>
-      <p class="fs-description">What would you like to discuss?</p>
+  </section>
+
+  <section id="gallery" class="fade">
+    <h2>PHOTOS</h2>
+    <div class="gallery">
+      <img src="images/photo1.jpg" alt="Danny Baylen photo 1">
+      <img src="images/photo2.jpg" alt="Danny Baylen photo 2">
     </div>
-    <div class="fs-button-group">
-      <button class="fs-button" type="submit">Submit</button>
-    </div>
-  </form>
-</section>
+  </section>
+
+  <section id="contact" class="fade">
+    <h2>CONTACT</h2>
+
+    <form action="https://formspree.io/f/mojnvovb" class="fs-form" target="_top" method="POST">
+      <div class="fs-field">
+        <label class="fs-label" for="name">Your Name</label>
+        <input class="fs-input" id="name" name="name" required>
+      </div>
+      <div class="fs-field">
+        <label class="fs-label" for="email">Email</label>
+        <input class="fs-input" id="email" name="email" type="email" required>
+        <p class="fs-description">This helps me respond to your query by email.</p>
+      </div>
+      <div class="fs-field">
+        <label class="fs-label" for="message">Message</label>
+        <textarea class="fs-textarea" id="message" name="message" required></textarea>
+        <p class="fs-description">What would you like to discuss?</p>
+      </div>
+      <div class="fs-button-group">
+        <button class="fs-button" type="submit">Submit</button>
+      </div>
+    </form>
+  </section>
+</main>
 
 <footer>
   <p>© 2026 Danny Baylen</p>
@@ -395,6 +456,14 @@ fades.forEach((f) => observer.observe(f));
 function toggleMenu() {
   document.getElementById('menu').classList.toggle('active');
 }
+
+const hamburger = document.querySelector('.hamburger');
+hamburger.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    toggleMenu();
+  }
+});
 </script>
 
 </body>
