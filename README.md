@@ -177,8 +177,8 @@ iframe {
 
 <div class="releases">
   <!-- Replace these with your Spotify embed track links -->
-  <iframe src="<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/4vYp0KvPQHBsz7OBSjI1qw?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>" width="100%" height="152" allow="encrypted-media"></iframe>
-  <iframe src="<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/6aAF3r7pp1AUCxfkaabZrY?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>" width="100%" height="152" allow="encrypted-media"></iframe>
+  <iframe src="<iframe data-testid="embed-iframe"
+  <iframe src="<iframe data-testid="embed-iframe" 
 </div>
 </section>
 
