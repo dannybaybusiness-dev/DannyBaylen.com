@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -24,6 +23,35 @@ body {
   color: white;
   text-align: center;
   font-weight: 600;
+}
+
+body > *:not(.rain) {
+  position: relative;
+  z-index: 1;
+}
+
+.rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0)),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15) 0,
+      rgba(255, 255, 255, 0.15) 2px,
+      transparent 2px,
+      transparent 18px
+    );
+  background-size: 100% 100%, 3px 26px;
+  animation: rainMove 0.45s linear infinite;
+}
+
+@keyframes rainMove {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 0 0, 0 26px; }
 }
 
 #loader {
@@ -148,45 +176,6 @@ iframe {
   border-radius: 12px;
 }
 
-.platform-cards {
-  max-width: 900px;
-  margin: 25px auto 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-.platform-card {
-  background: var(--panel);
-  border: 1px solid rgba(207, 24, 39, 0.4);
-  border-radius: 16px;
-  padding: 20px;
-}
-
-.platform-card i {
-  font-size: 40px;
-  color: var(--brand-red);
-}
-
-.platform-card h3 {
-  margin: 12px 0 8px;
-}
-
-.platform-card a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 800;
-  border: 1px solid var(--brand-red);
-  border-radius: 999px;
-  padding: 10px 16px;
-}
-
-.platform-card a:hover {
-  background: var(--brand-red);
-}
-
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -276,6 +265,8 @@ footer {
 </head>
 <body>
 
+<div class="rain" aria-hidden="true"></div>
+
 <div id="loader">
   <h1>DANNY BAYLEN</h1>
 </div>
@@ -297,7 +288,6 @@ footer {
 
   <nav id="menu">
     <a href="#releases">RELEASES</a>
-    <a href="#music-links">MUSIC LINKS</a>
     <a href="#videos">VIDEOS</a>
     <a href="#gallery">PHOTOS</a>
     <a href="#contact">CONTACT</a>
@@ -315,24 +305,6 @@ footer {
 <section class="fade">
   <h2>ALL MUSIC</h2>
   <iframe src="https://open.spotify.com/embed/artist/1sEDsEf0zV8EWIl5ZwirGS?theme=0" width="90%" height="380" allow="encrypted-media"></iframe>
-</section>
-
-<section id="music-links" class="fade">
-  <h2>MORE PLATFORMS</h2>
-  <div class="platform-cards">
-    <article class="platform-card">
-      <i class="fab fa-amazon"></i>
-      <h3>Amazon Music</h3>
-      <p>Listen to Danny Baylen on Amazon Music.</p>
-      <a href="https://music.amazon.ca/artists/B0D3M56MRK/danny-baylen" target="_blank" rel="noopener">Open Amazon Music</a>
-    </article>
-    <article class="platform-card">
-      <i class="fab fa-facebook"></i>
-      <h3>Facebook</h3>
-      <p>Follow updates and connect on Facebook.</p>
-      <a href="https://www.facebook.com/search/top?q=dannybaylen" target="_blank" rel="noopener">Open Facebook</a>
-    </article>
-  </div>
 </section>
 
 <section id="videos" class="fade">
@@ -354,7 +326,7 @@ footer {
 <section id="contact" class="fade">
   <h2>CONTACT</h2>
 
-  <form action="https://formspree.io/f/xbjvgrqe" class="fs-form" target="_top" method="POST">
+  <form action="https://formspree.io/f/mojnvovb" class="fs-form" target="_top" method="POST">
     <div class="fs-field">
       <label class="fs-label" for="name">Your Name</label>
       <input class="fs-input" id="name" name="name" required>
@@ -401,3 +373,4 @@ function toggleMenu() {
 
 </body>
 </html>
+
