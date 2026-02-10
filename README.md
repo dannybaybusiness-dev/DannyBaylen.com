@@ -1,239 +1,294 @@
-markdown: GFM
-title: ''
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Danny Baylen</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danny Baylen</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Rubik+Glitch&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-* { box-sizing:border-box; }
+* { box-sizing: border-box; }
 
-body {
-  margin:0;
-  font-family:'Inter', sans-serif;
-  background: linear-gradient(to bottom, #000000, #1a1a1a, #2e2e2e);
-  color:white;
-  text-align:center;
-  font-weight:600;
+:root {
+  --brand-red: #CF1827;
+  --bg-dark: #000;
+  --panel: rgba(255, 255, 255, 0.05);
 }
 
-/* LOADING SCREEN */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom, #000000, #161616, #2a2a2a);
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+
 #loader {
-  position:fixed;
-  inset:0;
-  background:black;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
 #loader h1 {
-  font-family:'Cinzel', serif;
-  font-size:40px;
-  color:red;
-  animation: glow 2s infinite alternate;
+  margin: 0;
+  font-family: 'Rubik Glitch', system-ui;
+  letter-spacing: 3px;
+  font-size: 40px;
+  color: var(--brand-red);
 }
 
-@keyframes glow {
-  from { text-shadow:0 0 5px red; }
-  to { text-shadow:0 0 25px red; }
-}
-
-/* HEADER */
 header {
-  background:url("images/header.jpg") center/cover no-repeat;
-  padding:30px 20px;
-  position:relative;
+  background: url("images/header.JPG") center/cover no-repeat;
+  padding: 30px 20px;
+  position: relative;
 }
 
 header::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.75);
-  z-index:0;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 0;
 }
 
 header * {
-  position:relative;
-  z-index:1;
+  position: relative;
+  z-index: 1;
 }
 
 .logo {
-  font-family:'Cinzel', serif;
-  letter-spacing:6px;
-  font-size:36px;
-  animation: glow 3s infinite alternate;
+  margin-top: 16px;
+  font-family: 'Rubik Glitch', system-ui;
+  letter-spacing: 4px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
 }
 
-/* SOCIAL ICONS */
+.social-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
 .social-top a {
-  color:red;
-  margin:0 12px;
-  font-size:30px;
-  transition:0.3s;
+  color: var(--brand-red);
+  font-size: 30px;
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
 }
 
 .social-top a:hover {
-  text-shadow:0 0 12px red,0 0 25px red;
-  transform:scale(1.2);
+  text-shadow: 0 0 12px var(--brand-red), 0 0 25px var(--brand-red);
+  transform: scale(1.15);
 }
 
-/* NAV */
 nav {
-  margin-top:15px;
+  margin-top: 20px;
 }
 
 nav a {
-  color:white;
-  margin:0 12px;
-  text-decoration:none;
-  font-size:15px;
-  font-weight:800;
+  color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
 }
 
-/* HAMBURGER */
+nav a:hover {
+  color: var(--brand-red);
+}
+
 .hamburger {
-  display:none;
-  font-size:28px;
-  cursor:pointer;
+  display: none;
+  margin-top: 12px;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-/* CONTACT BUTTON */
-.contact-btn {
-  display:inline-block;
-  margin-top:15px;
-  padding:12px 28px;
-  border:2px solid white;
-  border-radius:25px;
-  color:white;
-  text-decoration:none;
-  font-weight:800;
-}
-
-.contact-btn:hover {
-  box-shadow:0 0 15px white;
-}
-
-/* SECTIONS */
 section {
-  padding:70px 20px;
+  padding: 70px 20px;
 }
 
 .fade {
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
 }
+
 .fade.show {
-  opacity:1;
-  transform:translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h2 {
-  font-family:'Cinzel', serif;
-  letter-spacing:3px;
-  font-size:28px;
+  margin-top: 0;
+  font-size: 30px;
+  letter-spacing: 2px;
 }
 
-/* RELEASES */
-.releases {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
-}
-
-/* VIDEOS */
+.releases,
 .video-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* GALLERY */
+iframe {
+  border: none;
+  border-radius: 12px;
+}
+
+.platform-cards {
+  max-width: 900px;
+  margin: 25px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.platform-card {
+  background: var(--panel);
+  border: 1px solid rgba(207, 24, 39, 0.4);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.platform-card i {
+  font-size: 40px;
+  color: var(--brand-red);
+}
+
+.platform-card h3 {
+  margin: 12px 0 8px;
+}
+
+.platform-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  border: 1px solid var(--brand-red);
+  border-radius: 999px;
+  padding: 10px 16px;
+}
+
+.platform-card a:hover {
+  background: var(--brand-red);
+}
+
 .gallery {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .gallery img {
-  width:100%;
-  border-radius:10px;
-  transition:0.3s;
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery img:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 15px white;
+  transform: scale(1.04);
+  box-shadow: 0 0 15px var(--brand-red);
 }
 
-/* CONTACT FORM */
-form {
-  max-width:400px;
-  margin:auto;
+.fs-form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-input, textarea {
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  background:#111;
-  border:1px solid #444;
-  color:white;
+.fs-field {
+  margin-bottom: 14px;
 }
 
-button {
-  padding:12px 25px;
-  background:red;
-  border:none;
-  color:white;
-  font-weight:800;
-  cursor:pointer;
+.fs-label {
+  display: block;
+  margin-bottom: 6px;
 }
 
-button:hover {
-  box-shadow:0 0 15px red;
+.fs-input,
+.fs-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #101010;
+  border: 1px solid #444;
+  color: #fff;
 }
 
-/* FOOTER */
+.fs-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.fs-description {
+  margin: 6px 0 0;
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.fs-button-group {
+  margin-top: 18px;
+}
+
+.fs-button {
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--brand-red);
+  border: none;
+  color: #fff;
+  font-weight: 800;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.fs-button:hover {
+  box-shadow: 0 0 15px var(--brand-red);
+}
+
 footer {
-  border-top:1px solid #333;
-  padding:30px;
+  border-top: 1px solid #333;
+  padding: 30px;
 }
 
-/* MOBILE */
-@media(max-width:700px){
-  nav { display:none; }
-  nav.active { display:block; }
-  nav a { display:block; margin:10px 0; }
-  .hamburger { display:block; }
+@media (max-width: 700px) {
+  nav { display: none; }
+  nav.active { display: block; }
+  nav a { display: block; margin: 10px 0; }
+  .hamburger { display: block; }
 }
 </style>
 </head>
-
 <body>
 
-<!-- LOADER -->
 <div id="loader">
   <h1>DANNY BAYLEN</h1>
 </div>
 
 <header>
   <div class="social-top">
-    <a href="https://www.tiktok.com/@yesdanny"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.youtube.com/c/DannyBaylen"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.instagram.com/dannybaylen/?hl=en"><i class="fab fa-instagram"></i></a>
-    <a href="https://open.spotify.com/artist/1sEDsEf0zV8EWIl5ZwirGS"><i class="fab fa-spotify"></i></a>
-    <a href="https://music.apple.com/ca/artist/danny-baylen/1745303435"><i class="fab fa-apple"></i></a>
+    <a href="https://www.tiktok.com/@yesdanny" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://www.youtube.com/c/DannyBaylen" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.instagram.com/dannybaylen/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://open.spotify.com/artist/1sEDsEf0zV8EWIl5ZwirGS" target="_blank" rel="noopener" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+    <a href="https://music.apple.com/ca/artist/danny-baylen/1745303435" target="_blank" rel="noopener" aria-label="Apple Music"><i class="fab fa-apple"></i></a>
+    <a href="https://music.amazon.ca/artists/B0D3M56MRK/danny-baylen" target="_blank" rel="noopener" aria-label="Amazon Music"><i class="fab fa-amazon"></i></a>
+    <a href="https://www.facebook.com/search/top?q=dannybaylen" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
   </div>
 
   <div class="hamburger" onclick="toggleMenu()">☰</div>
@@ -242,6 +297,7 @@ footer {
 
   <nav id="menu">
     <a href="#releases">RELEASES</a>
+    <a href="#music-links">MUSIC LINKS</a>
     <a href="#videos">VIDEOS</a>
     <a href="#gallery">PHOTOS</a>
     <a href="#contact">CONTACT</a>
@@ -249,73 +305,97 @@ footer {
 </header>
 
 <section id="releases" class="fade">
-<h2>RECENT RELEASES</h2>
-<div class="releases">
-  <iframe src="<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/6aAF3r7pp1AUCxfkaabZrY?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>"
-  <iframe src="<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/4vYp0KvPQHBsz7OBSjI1qw?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>"
-</div>
+  <h2>RECENT RELEASES</h2>
+  <div class="releases">
+    <iframe src="https://open.spotify.com/embed/album/4vYp0KvPQHBsz7OBSjI1qw?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/album/6aAF3r7pp1AUCxfkaabZrY?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
 </section>
 
 <section class="fade">
-<h2>ALL MUSIC</h2>
-<iframe src="https://open.spotify.com/embed/artist/1sEDsEf0zV8EWIl5ZwirGS?theme=0"
-width="90%" height="380" allow="encrypted-media"></iframe>
+  <h2>ALL MUSIC</h2>
+  <iframe src="https://open.spotify.com/embed/artist/1sEDsEf0zV8EWIl5ZwirGS?theme=0" width="90%" height="380" allow="encrypted-media"></iframe>
+</section>
+
+<section id="music-links" class="fade">
+  <h2>MORE PLATFORMS</h2>
+  <div class="platform-cards">
+    <article class="platform-card">
+      <i class="fab fa-amazon"></i>
+      <h3>Amazon Music</h3>
+      <p>Listen to Danny Baylen on Amazon Music.</p>
+      <a href="https://music.amazon.ca/artists/B0D3M56MRK/danny-baylen" target="_blank" rel="noopener">Open Amazon Music</a>
+    </article>
+    <article class="platform-card">
+      <i class="fab fa-facebook"></i>
+      <h3>Facebook</h3>
+      <p>Follow updates and connect on Facebook.</p>
+      <a href="https://www.facebook.com/search/top?q=dannybaylen" target="_blank" rel="noopener">Open Facebook</a>
+    </article>
+  </div>
 </section>
 
 <section id="videos" class="fade">
-<h2>VIDEOS</h2>
-<div class="video-grid">
-  <iframe src="https://www.youtube.com/embed/4GQ9soRIelU" width="100%" height="315"></iframe>
-  <iframe src="https://www.youtube.com/embed/VV155sd5uA8" width="100%" height="315"></iframe>
-</div>
+  <h2>VIDEOS</h2>
+  <div class="video-grid">
+    <iframe src="https://www.youtube.com/embed/4GQ9soRIelU" width="100%" height="315" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/VV155sd5uA8" width="100%" height="315" allowfullscreen></iframe>
+  </div>
 </section>
 
 <section id="gallery" class="fade">
-<h2>PHOTOS</h2>
-<div class="gallery">
-  <img src="images/photo1.jpg">
-  <img src="images/photo2.jpg">
-  <img src="images/photo3.jpg">
-  <img src="images/photo4.jpg">
-</div>
+  <h2>PHOTOS</h2>
+  <div class="gallery">
+    <img src="images/photo1.jpg" alt="Danny Baylen photo 1">
+    <img src="images/photo2.jpg" alt="Danny Baylen photo 2">
+  </div>
 </section>
 
 <section id="contact" class="fade">
-<h2>CONTACT</h2>
+  <h2>CONTACT</h2>
 
-<form action="https://formspree.io/f/xbjvgrqe" method="POST">
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button type="submit">SEND MESSAGE</button>
-</form>
-
+  <form action="https://formspree.io/f/xbjvgrqe" class="fs-form" target="_top" method="POST">
+    <div class="fs-field">
+      <label class="fs-label" for="name">Your Name</label>
+      <input class="fs-input" id="name" name="name" required>
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="email">Email</label>
+      <input class="fs-input" id="email" name="email" type="email" required>
+      <p class="fs-description">This helps me respond to your query by email.</p>
+    </div>
+    <div class="fs-field">
+      <label class="fs-label" for="message">Message</label>
+      <textarea class="fs-textarea" id="message" name="message" required></textarea>
+      <p class="fs-description">What would you like to discuss?</p>
+    </div>
+    <div class="fs-button-group">
+      <button class="fs-button" type="submit">Submit</button>
+    </div>
+  </form>
 </section>
 
 <footer>
-<p>© 2026 Danny Baylen</p>
+  <p>© 2026 Danny Baylen</p>
 </footer>
 
 <script>
-// loader
-window.onload = function(){
-  document.getElementById("loader").style.display="none";
-}
+window.onload = function () {
+  document.getElementById('loader').style.display = 'none';
+};
 
-// fade animation
-const fades = document.querySelectorAll(".fade");
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
+const fades = document.querySelectorAll('.fade');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
     }
   });
 });
-fades.forEach(f=>observer.observe(f));
+fades.forEach((f) => observer.observe(f));
 
-// mobile menu
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
+function toggleMenu() {
+  document.getElementById('menu').classList.toggle('active');
 }
 </script>
 
